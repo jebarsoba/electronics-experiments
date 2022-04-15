@@ -4,7 +4,7 @@ int redPin = 10;
 int yellowPin = 9;
 int greenPin = 8;
 
-bool flashEnabled = false;
+bool flashEnabled = true;
 
 void setup() {
   pinMode(redPin, OUTPUT);
@@ -16,28 +16,26 @@ void setup() {
 
 void loop() {
   int analog = analogRead(A0);
-  int digital = map(analog, 0, 1023, 0, 9);
   Serial.println(analog);
-  Serial.println(digital);
 
-  if (digital > 0 && digital < 3) {
+  if (analog > 0 && analog < 250) {
     flashEnabled = false;
     digitalWrite(redPin, HIGH);
     digitalWrite(yellowPin, LOW);
     digitalWrite(greenPin, LOW);
-  } else if (digital >= 3 && digital < 6) {
+  } else if (analog >= 250 && analog < 500) {
     flashEnabled = false;
     digitalWrite(yellowPin, HIGH);
     digitalWrite(redPin, LOW);
     digitalWrite(greenPin, LOW);
-  } else if (digital >= 6 && digital < 9) {
+  } else if (analog >= 500 && analog < 750) {
     flashEnabled = false;
     digitalWrite(greenPin, HIGH);
     digitalWrite(redPin, LOW);
     digitalWrite(yellowPin, LOW);
-  } else if (digital == 9) {
+  } else if (analog >= 750) {
     flashEnabled = true;
-  } else if (digital == 0) {
+  } else if (analog == 0) {
     flashEnabled = false;
     off();
   }
@@ -45,6 +43,8 @@ void loop() {
   if (flashEnabled) {
     flash();
   }
+
+  delay(20);
 }
 
 void flash() {
