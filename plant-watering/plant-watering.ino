@@ -2,8 +2,8 @@
 
 // Calibration constants
 #define OPEN_AIR_THRESHOLD 590
-#define DRY_SOIL_THRESHOLD 380
-#define IDEAL_MIN_THRESHOLD 277
+#define DRY_SOIL_THRESHOLD 509
+#define IDEAL_MIN_THRESHOLD 361
 
 void setup() {
   Serial.begin(9600);
